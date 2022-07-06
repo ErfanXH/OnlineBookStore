@@ -25,24 +25,29 @@ namespace DataAccess.Models
         public string Title { get; set; }
         public string Description { get; set; }
         public double Rating { get; set; }
-        public double Price { get; set; }
+        public double MainPrice { get; set; }
+        public double CurrentPrice { get; set; }
         public int NumOfPages { get; set; }
         public DateTime ReleaseTime { get; set; }
         public string ImageAddress { get; set; }
         public Category category { get; set; }
         public Author author { get; set; }
         public BookType booktype { get; set; }
+        public int NumberOfSales { get; set; }
+        public int DiscountStartTime { get; set; }
+        public int DiscountDuration { get; set; }
 
         public static ObservableCollection<Book> books = new ObservableCollection<Book>();  //for ID
 
-        public Book(string title, string description, int page, DateTime time, double rating, double price, string imageAddress, Author author, BookType booktype, Category category)
+        public Book(string title, string description, int page, DateTime time, double rating, double price, string imageAddress, Author author, BookType booktype, Category category, double Current)
         {
             Title = title;
             Description = description;
             NumOfPages = page;
             ReleaseTime = time;
             Rating = rating;
-            Price = price;
+            MainPrice = price;
+            CurrentPrice = Current;
             ImageAddress = imageAddress;
             //  ImageAddress = $"Pivtures/{Title}.jpg";
             this.booktype = booktype;
