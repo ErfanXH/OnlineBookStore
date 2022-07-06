@@ -28,7 +28,7 @@ namespace DataAccess
             DataTable dataTable = new DataTable();
             adapter.Fill(dataTable);
             SqlCommand sqlCommand = new SqlCommand(command, connection);
-            sqlCommand.BeginExecuteNonQuery();
+            sqlCommand.ExecuteNonQuery();
 
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
@@ -42,9 +42,31 @@ namespace DataAccess
                 BookType type = (BookType)Enum.Parse(typeof(BookType), dataTable.Rows[i][7].ToString());
                 int page = int.Parse(dataTable.Rows[i][8].ToString());
                 Category cat = (Category)Enum.Parse(typeof(Category), dataTable.Rows[i][10].ToString());
+                double CurrentPrice;
+                if (dataTable.Rows[i][11].ToString() != "")
+                    CurrentPrice = double.Parse(dataTable.Rows[i][11].ToString());
+                else
+                    CurrentPrice = price;
 
-                Book book = new Book(title, desc, page, DateTime.Now, rate, price, address, author, type, cat);
+                int DiscountStart = 0, DiscountDuration = 0, n;
+                if (int.TryParse(dataTable.Rows[i][12].ToString(), out n) && int.TryParse(dataTable.Rows[i][13].ToString(), out n)) 
+                {
+                    DiscountStart = int.Parse(dataTable.Rows[i][12].ToString());
+                    DiscountDuration = int.Parse(dataTable.Rows[i][13].ToString());
+                }
+
+                if (DiscountStart + DiscountDuration == DateTime.Now.Day)  
+                {
+                    CurrentPrice = price;
+                    DiscountDuration = 0;
+                    DiscountStart = 0;
+                }
+                                                        
+                Book book = new Book(title, desc, page, DateTime.Now, rate, price, address, author, type, cat, CurrentPrice);
                 book.ID = id;
+                book.DiscountDuration = DiscountDuration;
+                book.DiscountStartTime = DiscountStart;
+
                 Books.Add(book);
             }
 
@@ -54,12 +76,13 @@ namespace DataAccess
         {
             SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\lenovo\source\repos\VisionAcademy\DataAccess\BooksDatabase.mdf;Integrated Security=True;Connect Timeout=30");
             connection.Open();
-            string command;
-            command = "Insert into BooksTable values('"+book.ID+ "','" + book.Title+ "','" + book.Description + "','" + book.Rating + "''" + book.Price + "', '" + book.ImageAddress + "','" + book.author.FullName + "', '" + book.booktype.ToString() + "')";
+            string command; int zero = 0;
+            command = "Insert into BooksTable values('"+book.ID+"' , '"+ book.Title +"' , '"+ book.Description +"' , '"+ book.Rating +"','"+ book.MainPrice +"' , '"+ book.ImageAddress +"' , '"+ book.author.FullName +"' , '"+ book.booktype.ToString() +"' , '"+ book.NumOfPages +"' , '"+ DateTime.Now +"' , '"+ book.category.ToString() +"' , '"+ book.MainPrice +"' , '"+ zero +"' , '"+ zero +"' )";       //CurrentPrice !!!!
             SqlCommand sqlCommand = new SqlCommand(command, connection);
-            sqlCommand.BeginExecuteNonQuery();
+            sqlCommand.ExecuteNonQuery();
             connection.Close();
 
+            Books.Add(book);
         }
         public void EditBook(int id, Book newBook)  //extra book would be added??!
         {
@@ -67,11 +90,31 @@ namespace DataAccess
             SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\lenovo\source\repos\VisionAcademy\DataAccess\BooksDatabase.mdf;Integrated Security=True;Connect Timeout=30");
             connection.Open();
 
-            string command = "update BooksTable set Title = '"+newBook.Title+"', Description = '"+newBook.Description+"', Rating = '"+newBook.Rating+"', Price = '"+newBook.Price+"', ImageAddress = '"+newBook.ImageAddress+"', BookTypeStr = '"+newBook.booktype.ToString()+"', CategoryStr = '"+newBook.category.ToString()+"' where Id = '"+id+"'";
+            string command = "update BooksTable set Title = '"+newBook.Title+"', Description = '"+newBook.Description+"', Rating = '"+newBook.Rating+"', MainPrice = '"+newBook.MainPrice+"', ImageAddress = '"+newBook.ImageAddress+"', AuthorName = '"+newBook.author.FullName+"' , BookTypeStr = '"+newBook.booktype.ToString()+"', Page = '"+newBook.NumOfPages+"' , Time = '"+newBook.ReleaseTime+"' , CategoryStr = '"+newBook.category.ToString()+"', CurrentPrice = '"+newBook.CurrentPrice+"' , DiscountStartTime = '"+newBook.DiscountStartTime+"' , DiscountDuration = '"+newBook.DiscountDuration+"' where Id = '"+id+"'";
             SqlCommand sqlCommand = new SqlCommand(command, connection);
-            sqlCommand.BeginExecuteNonQuery();
+            sqlCommand.ExecuteNonQuery();
 
-            RemoveBook(newBook);    //delete extra
+            int index = Books.IndexOf(oldBook);
+            Books[index] = newBook;
+
+           // RemoveBook(newBook);    //delete extra
+
+            connection.Close();
+        }
+
+        public void SetDiscount(double percentage, Book book, int time)
+        {
+            SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\lenovo\source\repos\VisionAcademy\DataAccess\BooksDatabase.mdf;Integrated Security=True;Connect Timeout=30");
+            connection.Open();
+
+            double newCurrent = ((100 - percentage) / 100) * book.MainPrice;
+                                                                                                                                                                                                                                                                                                                                                                                                                    
+            string command = "update BooksTable set Title = '" + book.Title + "', Description = '" + book.Description + "', Rating = '" + book.Rating + "', MainPrice = '" + book.MainPrice + "', ImageAddress = '" + book.ImageAddress + "', BookTypeStr = '" + book.booktype.ToString() + "', CategoryStr = '" + book.category.ToString() + "', CurrentPrice = '" + newCurrent + "', DiscountStartTime = '"+DateTime.Now.Day+"', DiscountDuration = '"+time+"' where Id = '" + book.ID + "'";
+            SqlCommand sqlCommand = new SqlCommand(command, connection);
+            sqlCommand.ExecuteNonQuery();
+
+            int index = Books.IndexOf(book);
+            Books[index].CurrentPrice = ((100 - percentage) * Books[index].MainPrice) / 100;
 
             connection.Close();
         }
@@ -81,7 +124,7 @@ namespace DataAccess
             SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\lenovo\source\repos\VisionAcademy\DataAccess\BooksDatabase.mdf;Integrated Security=True;Connect Timeout=30");
             connection.Open();
 
-            string command = "update BooksTable set Title = '" + book.Title + "', Description = '" + book.Description + "', Rating = '" + book.Rating + "', Price = '" + book.Price + "', ImageAddress = '" + book.ImageAddress + "', BookTypeStr = '" + bookType.ToString() + "', CategoryStr = '" + book.category.ToString() + "' where Id = '" + book.ID + "'";
+            string command = "update BooksTable set Title = '" + book.Title + "', Description = '" + book.Description + "', Rating = '" + book.Rating + "', Price = '" + book.MainPrice + "', ImageAddress = '" + book.ImageAddress + "', BookTypeStr = '" + bookType.ToString() + "', CategoryStr = '" + book.category.ToString() + "', CurrentPrice = '" + book.CurrentPrice + "' where Id = '" + book.ID + "'";
             SqlCommand sqlCommand = new SqlCommand(command, connection);
             sqlCommand.ExecuteNonQuery();
 
@@ -92,7 +135,7 @@ namespace DataAccess
 
             Books[index].booktype = bookType;
             int id = Books[index].ID;
-            Books[index] = new Book(book.Title, book.Description, book.NumOfPages, DateTime.Now, book.Rating, book.Price, book.ImageAddress, book.author, bookType, book.category) { ID = id };
+            Books[index] = new Book(book.Title, book.Description, book.NumOfPages, DateTime.Now, book.Rating, book.MainPrice, book.ImageAddress, book.author, bookType, book.category, book.CurrentPrice) { ID = id };
            
             connection.Close();
         }
@@ -102,9 +145,12 @@ namespace DataAccess
             SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\lenovo\source\repos\VisionAcademy\DataAccess\BooksDatabase.mdf;Integrated Security=True;Connect Timeout=30");
             connection.Open();
 
-            string command = "delete from BooksTable where Id = '"+book.ID+"'";
+            string command = "delete from BooksTable where Id = '"+ book.ID +"' ";
             SqlCommand sqlCommand = new SqlCommand(command, connection);
-            sqlCommand.BeginExecuteNonQuery();
+            sqlCommand.ExecuteNonQuery();
+
+            int index = Books.IndexOf(book);
+            Books.RemoveAt(index);
 
             connection.Close();
         }
