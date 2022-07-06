@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="addBook.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="AddEditDeleteBook.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="addVip.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="AdminDashboard.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="BookInfo.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="BooksReports.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="CustomerDashboard.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="CustomerInfo.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Discount.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="EditBook.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="EditProfileUser.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="HomePage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ListOfBooks.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Payment.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UserProducts.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="VipBooksList.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="VipsList.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="addBook.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="AddEditDeleteBook.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="addVip.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="AdminDashboard.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="BookInfo.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="BooksReports.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="CustomerDashboard.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="CustomerInfo.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Discount.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="EditBook.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="EditProfileUser.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="HomePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ListOfBooks.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Payment.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserProducts.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="VipBooksList.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="VipsList.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

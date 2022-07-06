@@ -1,0 +1,39 @@
+﻿<Window x:Class="OnlineBookStore.AddEditDeleteBook"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OnlineBookStore"
+        mc:Ignorable="d"
+         Title="AddEditDeleteBook" Height="700" Width="900">
+    <Grid>
+
+        <ListBox Margin="30,30,30,50" Name="ListBoxBooks" SelectionChanged="ListBoxBooks_SelectionChanged"  BorderThickness="0">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel>
+                        <Image Source="{Binding ImageAddress}" Height="50" Width="50" HorizontalAlignment="Center" Margin="20,10"/>
+                        <TextBlock Text="{Binding Title}" VerticalAlignment="Center" FontFamily="Arial" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center" Margin="20,0"/>
+                        <TextBlock Text="{Binding author.FullName}" VerticalAlignment="Center" FontFamily="Arial" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center" Margin="20,0"/>
+                        <TextBlock Text="{Binding Rating}" VerticalAlignment="Center" FontFamily="Arial" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center" Margin="20,0"/>
+                        <TextBlock Text="{Binding NumOfPages}" VerticalAlignment="Center" FontFamily="Arial" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center" Margin="20,0"/>
+                        <TextBlock Text="{Binding ReleaseTime}" VerticalAlignment="Center" FontFamily="Arial" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center" Margin="20,0"/>
+                        <TextBlock Text="{Binding category}" VerticalAlignment="Center" FontFamily="Arial" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center" Margin="20,0"/>
+                        <TextBlock Text="{Binding booktype}" VerticalAlignment="Center" FontFamily="Arial" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center" Margin="20,0"/>
+                        <TextBlock Text="{Binding MainPrice}" VerticalAlignment="Center" FontFamily="Arial" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center" Margin="20,0"/>
+                        <TextBlock Text="{Binding CurrentPrice}" VerticalAlignment="Center" FontFamily="Arial" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center" Margin="20,0"/>
+                        <TextBlock Text="{Binding NumberOfSales}" VerticalAlignment="Center" FontFamily="Arial" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center" Margin="20,0"/>
+                    </DockPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <DockPanel Margin="30,0,30,10" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+            <Button x:Name="Add" Click="Add_Click" Content="Add" Margin="20,0" Width="50" Height="30"/>
+            <Button x:Name="Edit" Click="Edit_Click" Content="Edit" Width="50" Margin="20,0" Height="30"/>
+            <Button x:Name="Delete" Click="Delete_Click" Content="Delete" Width="50" Margin="20,0" Height="30"/>
+            <!--   <Button x:Name="Add" Content="Add" Width="50" Height="30"/> -->
+        </DockPanel>
+
+    </Grid>
+</Window>

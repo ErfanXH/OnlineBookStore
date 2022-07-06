@@ -1,0 +1,38 @@
+﻿<Window x:Class="OnlineBookStore.ListOfBooks"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OnlineBookStore"
+        mc:Ignorable="d"
+        Title="ListOfBooks" Height="700" Width="1000" WindowStyle="None" AllowsTransparency="False" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid Background="#f3e5de">
+
+        <Rectangle Stroke="#f3e5de" Fill="White" RadiusX="18.08" RadiusY="18.08" Margin="39,36,43,34"/>
+        <Image Source="Pictures/closeBlack.png" VerticalAlignment="Top" HorizontalAlignment="Right" Width="24" Height="24" Margin="10" Name="btnClose" MouseLeftButtonDown="btnClose_MouseLeftButtonDown"/>
+        <DockPanel Margin="60,50">
+            <Label Margin="0,0,0,0" FontFamily="Arial Black" FontWeight="Normal" FontSize="16">BookShop</Label>
+            <Button VerticalAlignment="Top" Content="Home" Width="50" Height="30" Background="White" BorderBrush="White" Foreground="Gray" Name="btnHome" Click="btnHome_Click"/>
+            <Label Content="\ View Books" VerticalAlignment="Top" Margin="-10,2" Height="30" Foreground="Black"/>
+            <Image VerticalAlignment="Top" Margin="520,0,0,0" HorizontalAlignment="Right" Width="30" Height="30" Source="Pictures/User.jpg" Name="User" MouseLeftButtonDown="User_MouseLeftButtonDown"/>
+            <Label Content="User Name" Padding="10,10,5,2" FontFamily="Arial" Name="UserName"/>
+        </DockPanel>
+        <ListBox Name="ListBox1" SelectionChanged="ListBox1_SelectionChanged" Margin="70,100,70,50" BorderThickness="0">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel>
+                        <Image Source="{Binding ImageAddress}" Width="200" Height="200"/>
+                        <StackPanel Margin="10,5">
+                            <TextBlock Text="{Binding Title}" Margin="0,10,0,10" FontFamily="Cascadia Code SemiBold" FontWeight="Bold" FontSize="22"/>
+                            <TextBlock Text="{Binding author.FullName}" Margin="0,0,0,10" FontFamily="Cascadia Code SemiBold" FontWeight="Bold" FontSize="18"/>
+                            <TextBlock Text="{Binding Rating}" Margin="0,0,0,10" FontFamily="Cascadia Code SemiBold" FontWeight="Bold" FontSize="14"/>
+                            <TextBlock Text="{Binding Description}" Margin="0,0,0,70" FontFamily="Cascadia Code SemiBold" FontWeight="Bold" FontSize="14"/>
+                            <TextBlock Text="{Binding Price}" Margin="0,0,0,10" FontFamily="Cascadia Code SemiBold" FontWeight="Bold" FontSize="18"/>
+                        </StackPanel>
+                        <Label Content="{Binding booktype}" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="20" Foreground="#FF6F0588" FontFamily="Cascadia Code SemiBold"/>
+                    </DockPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</Window>

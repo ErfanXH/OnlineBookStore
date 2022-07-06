@@ -1,0 +1,25 @@
+﻿<Window x:Class="OnlineBookStore.VipsList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OnlineBookStore"
+        mc:Ignorable="d"
+         Title="VipsList" Height="450" Width="800">
+    <Grid Background="#FF580FE0">
+        <Label Content="  ID      Duration    Price" Foreground="White" FontFamily="Arial" FontSize="16" FontWeight="Bold" Margin="50,10"/>
+        <ListBox Background="#FF580FE0" Height="250" VerticalAlignment="Top" Name="ListBoxV" SelectionChanged="ListBoxV_SelectionChanged" Margin="40" BorderThickness="1">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel>
+                        <TextBlock Text="{Binding getID}" VerticalAlignment="Center" FontFamily="Arial" FontSize="20" FontWeight="Bold"  Foreground="White" HorizontalAlignment="Center" Margin="20,0"/>
+                        <TextBlock Text="{Binding Duration}" VerticalAlignment="Center" FontFamily="Arial" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" Margin="20,0"/>
+                        <TextBlock Text="{Binding Price}" VerticalAlignment="Center" FontFamily="Arial" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" Margin="20,0"/>
+                    </DockPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button Name="Addvip" Click="Addvip_Click" Content="Add" Width="30" Height="30" HorizontalAlignment="Left" Margin="60,240,20,20" Background="#FF580FE0" BorderBrush="#FF580FE0" Foreground="White"/>
+        <Button Name="Delvip" Click="Delvip_Click" Content="Delete" Width="50" Height="30" HorizontalAlignment="Left" Margin="110,240,20,20" Background="#FF580FE0" BorderBrush="#FF580FE0" Foreground="White"/>
+    </Grid>
+</Window>
