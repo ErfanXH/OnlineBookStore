@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Amir\Documents\AP3\OnlineBookStore\OnlineBookStore\obj\Debug\net5.0-windows\
+C:\Users\Amir\Desktop\git project\OnlineBookStore\OnlineBookStore\obj\Debug\net5.0-windows\
 OnlineBookStore
 none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
-C:\Users\Amir\Documents\AP3\OnlineBookStore\OnlineBookStore\App.xaml
+C:\Users\Amir\Desktop\git project\OnlineBookStore\OnlineBookStore\App.xaml
 18-689433910
 
 22-256248561
-215-1848731755
+215872541748
 addBook.xaml;AddEditDeleteBook.xaml;addVip.xaml;AdminDashboard.xaml;BookInfo.xaml;BooksReports.xaml;CustomerDashboard.xaml;CustomerInfo.xaml;Discount.xaml;EditBook.xaml;EditProfileUser.xaml;HomePage.xaml;ListOfBooks.xaml;MainWindow.xaml;Payment.xaml;UserProducts.xaml;VipBooksList.xaml;VipsList.xaml;
 
-True
+False
 
