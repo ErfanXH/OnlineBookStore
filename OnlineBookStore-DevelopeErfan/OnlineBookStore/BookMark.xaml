@@ -1,0 +1,56 @@
+﻿<Window x:Class="OnlineBookStore.BookMark"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OnlineBookStore"
+        mc:Ignorable="d"
+        Title="BookMark" Height="600" Width="950" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Column="0" Margin="3" Width="250" Background="WhiteSmoke" BorderThickness="3" BorderBrush="Gray" HorizontalAlignment="Center">
+            <StackPanel>
+                <Button Margin="20,30" Background="#3E454C" FontSize="25" Foreground="LightBlue" Height="80" Content="Marked Book" FontWeight="SemiBold" Name="btnMarked" Click="btnMarked_Click"/>
+                <Button Margin="20,30" Background="#3E454C" FontSize="25" Foreground="LightBlue" Height="80" Content="Bought Book" FontWeight="SemiBold" Name="btnBought" Click="btnBought_Click"/>
+                <Button Margin="20,30" Background="#3E454C" FontSize="25" Foreground="LightBlue" Height="80" Content="Exit" FontWeight="SemiBold" Name="btnExit" Click="btnExit_Click"/>
+            </StackPanel>
+        </Border>
+        <Border Grid.Column="1" Margin="3" Visibility="Visible" Background="LightGray" BorderThickness="3" BorderBrush="Gray" x:Name="HomePanel">
+
+        </Border>
+        <Border Grid.Column="1" Margin="3" Visibility="Collapsed" Background="LightGray" HorizontalAlignment="Stretch" BorderThickness="3" BorderBrush="Gray" x:Name="MarkedPanel">
+            <StackPanel HorizontalAlignment="Stretch" Margin="5">
+                <DataGrid Margin="5" Name="MarkedGrid" ColumnWidth="*" CanUserAddRows="False" MinColumnWidth="100" CanUserResizeColumns="True" SelectionChanged="MarkedGrid_SelectionChanged" AutoGenerateColumns="False" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="*"/>
+                        <DataGridTextColumn Header="Rating" Binding="{Binding Rating}" Width="*"/>
+                        <DataGridTextColumn Header="Price" Binding="{Binding Price}" Width="*"/>
+                        <DataGridTextColumn Header="Author" Binding="{Binding author.FullName}" Width="*"/>
+                        <DataGridTextColumn Header="Type" Binding="{Binding booktype}" Width="*"/>
+                        <DataGridTextColumn Header="Pages" Binding="{Binding NumOfPages}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <WrapPanel>
+                    <Label Margin="2" FontWeight="Bold" Content="Description:"></Label>
+                    <Label Margin="2" Content="---" Name="lbDescription"></Label>
+                </WrapPanel>
+            </StackPanel>
+        </Border>
+        <Border Grid.Column="1" Margin="3" Visibility="Collapsed" Background="LightGray" HorizontalAlignment="Stretch" BorderThickness="3" BorderBrush="Gray" x:Name="BoughtPanel">
+            <StackPanel HorizontalAlignment="Stretch" Margin="5">
+                <DataGrid Margin="5" Name="BoughtGrid" ColumnWidth="*" CanUserAddRows="False" MinColumnWidth="100" CanUserResizeColumns="True" SelectionChanged="BoughtGrid_SelectionChanged" AutoGenerateColumns="False" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="*"/>
+                        <DataGridTextColumn Header="Rating" Binding="{Binding Rating}" Width="*"/>
+                        <DataGridTextColumn Header="Author" Binding="{Binding author.FullName}" Width="*"/>
+                        <DataGridTextColumn Header="Type" Binding="{Binding booktype}" Width="*"/>
+                        <DataGridTextColumn Header="Pages" Binding="{Binding NumOfPages}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

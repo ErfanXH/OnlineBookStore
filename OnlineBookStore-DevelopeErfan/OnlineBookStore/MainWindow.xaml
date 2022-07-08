@@ -1,0 +1,91 @@
+﻿<Window x:Class="OnlineBookStore.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OnlineBookStore"
+        mc:Ignorable="d"
+        Title="Login Page" Height="550" Width="1100" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
+    <Grid>
+        <Image Source="Resourses/Background2.jpg" Height="600"/>
+        <StackPanel>
+            <Button HorizontalAlignment="Right" Name="btnExit" Click="btnExit_Click">
+                <Image Source="Resourses/Exit.jpg" Height="30"/>
+            </Button>
+            <Label HorizontalAlignment="Center" Content="ELMOS PRODUCTION" Margin="40,5" FontSize="35" Foreground="WhiteSmoke"/>
+            <Grid HorizontalAlignment="Center" Width="800" Height="400">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Border BorderBrush="WhiteSmoke" BorderThickness="5,5,0,5" Background="WhiteSmoke">
+                    <StackPanel>
+                        <Button Background="#cfa189" Name="btnLogin" Click="btnLogin_Click">
+                            <StackPanel Height="127">
+                                <Image Source="Resourses/login.png" Height="45" Margin="20,20,20,0"/>
+                                <Label Content="User Login" HorizontalAlignment="Center" FontSize="15" Foreground="WhiteSmoke"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Background="#cfa189" Name="btnRegister" Click="btnRegister_Click">
+                            <StackPanel Height="127">
+                                <Image Source="Resourses/signup.png" Height="45" Margin="20,20,20,0"/>
+                                <Label Content="User Register" FontSize="15" HorizontalAlignment="Center" Foreground="WhiteSmoke"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Background="#cfa189" Name="btnAdmin" Click="btnAdmin_Click">
+                            <StackPanel Height="130">
+                                <Image Source="Resourses/admin.png" Height="45" Margin="20,20,20,0"/>
+                                <Label Content="Admin Login" HorizontalAlignment="Center" FontFamily="18" Foreground="WhiteSmoke"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </Border>
+                <Border Grid.Column="1" Visibility="Visible" BorderThickness="3,5,5,5" Background="#cfa189" BorderBrush="WhiteSmoke" x:Name="HomePanel">
+                    <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="Welcome to Online Book Store" FontSize="30" FontWeight="Bold" />
+                </Border>
+                <Border Grid.Column="1" Visibility="Collapsed" BorderThickness="3,5,5,5" Background="#cfa189" BorderBrush="WhiteSmoke" x:Name="SuccessfullyPanel">
+                    <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="Registration completed successfully" FontSize="30" FontWeight="Bold" />
+                </Border>
+                <Border Grid.Column="1" Visibility="Collapsed" BorderThickness="3,5,5,5" Background="#cfa189" BorderBrush="WhiteSmoke" x:Name="UserLoginPanle">
+                    <StackPanel Margin="10">
+                        <Label Content="Login Here" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold"/>
+                        <StackPanel Margin="10">
+                            <Label Margin="3,0" Content="Email:" HorizontalAlignment="Left" FontSize="20" FontWeight="DemiBold"/>
+                            <TextBox FontSize="20" Name="tbEmailUserLogin"/>
+                            <Label Content="Password:" Margin="3,50,3,0" HorizontalAlignment="Left" FontSize="20" FontWeight="DemiBold"/>
+                            <PasswordBox FontSize="20" Name="pbPasswordUserLogin"/>
+                            <Button Margin="0,60,0,0" Content="Login" Height="60" FontSize="30" FontWeight="ExtraBlack" Name="btnLoginUserLogin" Click="btnLoginUserLogin_Click"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+                <Border Grid.Column="1" Visibility="Collapsed" BorderThickness="3,5,5,5" Background="#cfa189" BorderBrush="WhiteSmoke" x:Name="RegisterUserPanel">
+                    <StackPanel Margin="5">
+                        <Label Margin="3,0" Content="First Name:" HorizontalAlignment="Left" FontSize="20" FontWeight="DemiBold"/>
+                        <TextBox FontSize="18" Name="tbFirstNameRegister"/>
+                        <Label Margin="3,0" Content="Last Name:" HorizontalAlignment="Left" FontSize="20" FontWeight="DemiBold"/>
+                        <TextBox FontSize="18" Name="tbLastNameRegister"/>
+                        <Label Margin="3,0" Content="Phone Number:" HorizontalAlignment="Left" FontSize="20" FontWeight="DemiBold"/>
+                        <TextBox FontSize="18" Name="tbPhoneNumberRegister"/>
+                        <Label Margin="3,0" Content="Email:" HorizontalAlignment="Left" FontSize="20" FontWeight="DemiBold"/>
+                        <TextBox FontSize="18" Name="tbEmailRegister"/>
+                        <Label Margin="3,0" Content="Password:" HorizontalAlignment="Left" FontSize="20" FontWeight="DemiBold"/>
+                        <PasswordBox FontSize="18" Name="pbPasswordRegister"/>
+                        <Button Margin="0,20,0,0" Content="Register" Height="50" FontSize="30" FontWeight="ExtraBlack" Name="btnUserRegister" Click="btnUserRegister_Click"/>
+                    </StackPanel>
+                </Border>
+                <Border Grid.Column="1" Visibility="Collapsed" BorderThickness="3,5,5,5" Background="#cfa189" BorderBrush="WhiteSmoke" x:Name="AdminLoginPanel">
+                    <StackPanel Margin="10">
+                        <Label Content="Login Here" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold"/>
+                        <StackPanel Margin="10">
+                            <Label Margin="3,0" Content="Username:" HorizontalAlignment="Left" FontSize="20" FontWeight="DemiBold"/>
+                            <TextBox FontSize="20" Name="tbUsernameAdmin"/>
+                            <Label Content="Password:" Margin="3,50,3,0" HorizontalAlignment="Left" FontSize="20" FontWeight="DemiBold"/>
+                            <PasswordBox FontSize="20" Name="pbPasswordAdmin"/>
+                            <Button Margin="0,60,0,0" Content="Login" Height="60" FontSize="30" FontWeight="ExtraBlack" Name="btnLoginAdmin" Click="btnLoginAdmin_Click"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>
